@@ -1,0 +1,98 @@
+/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ *
+ * ***** BEGIN LICENSE BLOCK *****
+ * Copyright (C) 2001, 2009 the Initial Developer and contributors.
+ * All rights reserved.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The Original Code is mozilla.org code.
+ *
+ * The Initial Developer of the Original Code is
+ * Netscape Communications Corporation.
+ * Portions created by the Initial Developer are Copyright (C) 2001
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ * Portions Copyright (c) 2009, 3Di, Inc. (http://3di.jp/).
+ * All Rights Reserved.
+ *
+ * ***** END LICENSE BLOCK ***** */
+
+#include "nsISupports.idl"
+
+[scriptable, uuid(d912b0be-b1e8-421c-af83-2f46dfe79081)]
+interface nsIJavaScriptEventListener : nsISupports {
+  void OnDebugMessage(in string message);
+  void OnTouched(in string uuid);
+  void OnReceivedMessage(in string uuid,in string avatarName,in wstring message);
+  void OnTeleport(in string regionName, in long x, in long y, in long z);
+  void OnTeleported(in string uuid, in string avatar, in long x, in long y, in long z);
+  void OnOpenWindow(in string target, in string uri);
+  void OnStateChanged(in long state);
+  void OnAvatarPicked(in string uuid);
+  void OnDispatch(in string action, in string message);
+};
+
+[scriptable, uuid(bc43c2b9-e55b-4e4c-935a-cf1fd98db009)]
+interface nsIScriptablePlugin : nsISupports {
+  void SetEventListener(in nsIJavaScriptEventListener listener);
+  string GetPluginInfo();
+  void Login(in string firstName, in string lastName, in string password, in string serverURL, in string loginLocation);
+  void Logout();
+  void TouchTo(in string uuid);
+  void SitOn(in string uuid);
+  void StandUp();
+  void SendChat(in wstring message, in long range);
+  wstring GetMessageFromHistory(in long index);
+  long GetMessageHistoryLength();
+  void TeleportTo(in string region, in long x, in long y, in long z);
+  string GetUserAvatarName();
+  string GetUserAvatarPosition();
+  string GetUserAvatarUUID();
+  string GetUserUUID();
+  void UserAvatarUp();
+  void UserAvatarDown();
+  void UserAvatarLeft();
+  void UserAvatarRight();
+  void StartCustomAnimation(in long index);
+  string GetFPS();
+  string GetPrimitiveCount();
+  string GetTextureCount();
+  void CameraLookAt(in float px, in float py, in float pz, in float tx, in float ty, in float tz);
+  void SetCameraDistance(in float distance);
+  string GetCameraDistance();
+  string GetCameraPosition();
+  string GetCameraTarget();
+  string GetCameraFOV();
+  void SetCameraFOV(in float fov);
+  void SetCameraFOVDegree(in float fov);
+  string GetCameraOffsetY();
+  void SetCameraOffsetY(in float offsetY);
+  string GetCameraAngleY();
+  void SetCameraAngleY(in float min, in float max);
+  void SetAvatarDisappearDistance(in float distance);
+  string GetAvatarCount();
+  string GetObjectCount();
+  string GetRegionName();
+  string GetWorldTime();
+  void SetWorldTime(in string dataTime);
+  void SetTickOn(in string flag);
+  void SetWorldAmbientColor(in string colors);
+  void SetFixDirectional(in string flag);
+  void SetFixDirectionalRotation(in string radRotation);
+  void SetFixDirectionalDiffuseColor(in string colors);
+  void SetFixDirectionalAmbientColor(in string colors);
+  string Callback(in string action, in string message);
+};

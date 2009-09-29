@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<link rel="stylesheet" type="text/css" href="test.css" />
+	<title>3Di-OpenViewer Test Page</title>
+	<script type="text/javascript" src="test.js" language="javascript"></script>
+	<!--
+	**********************************************
+	Event from Ctrl.
+	**********************************************
+	-->
+	<!--0. Debug sample.-->
+	<script language="javascript" for="ctrl" event="OnDebugMessage(message)" type="text/jscript">
+	<!--
+		debug_info.value = message;
+	-->
+	</script>
+
+	<!--1. .-->
+
+	<!--2. Touch sample.-->
+	<script language="javascript" for="ctrl" event="OnTouched(uuid)" type="text/jscript">
+	<!--
+		TouchEventHandler(uuid);
+	-->
+	</script>
+
+	<!--3. .-->
+	
+	<!--4. Chat sample.-->
+	<script language="javascript" for="ctrl" event="OnReceivedMessage(uuid, avatarName, message)" type="text/jscript">
+	<!--
+		GetChatMessage();
+	-->
+	</script>
+
+	<!--5. Teleport-->
+	<script language="javascript" for="ctrl" event="OnTeleport(regionName, positionX, positionY, positionZ)" type="text/jscript">
+	<!--
+		touch_res.value = regionName + " X:" + positionX.toString() + " Y:" + positionY.toString() + " Z:" + positionZ.toString();
+	-->
+	</script>
+
+	<script language="javascript" for="ctrl" event="OnTeleported(avatarUUID, avatarName, positionX, positionY, positionZ)" type="text/jscript">
+	<!--
+		touch_res.value = avatarName + " X:" + positionX.toString() + " Y:" + positionY.toString() + " Z:" + positionZ.toString();
+	-->
+	</script>
+
+	<!--6. LSL triggered html related manupuration-->
+	<script language="javascript" for="ctrl" event="OnOpenWindow(getTarget, getUri)" type="text/jscript">
+	<!--
+	    window.open(getUri, getTarget);
+	-->
+	</script>
+
+	<!--7. .-->
+
+	<!--8. Common-->
+	<script language="javascript" for="ctrl" event="OnStateChanged(state)" type="text/jscript">
+	<!--
+		state_message.value = state;
+	-->
+	</script>
+	
+	<!--9. .-->
+</head>
+
+
+
+<!--
+**********************************************
+Page Body.
+**********************************************
+-->
+<body onLoad="CalcObject()" onResize="CalcObject()" onScroll="CalcObject()">
+	<input id="js_debug_text_fix" type="text" name="debug_info" value=""/>
+	
+	<div id="js_object_fix">
+	<object id="ctrl" type="application/x-3di-openviewer" width="800" height="600">
+		<!-- General settings -->
+		<!--
+		<PARAM name="BackgroundColor" value="#ffff0000" />
+		<PARAM name="ProgressColor" value="#ffff0000" />
+		-->
+		
+		<!-- Init settings -->
+		<!--
+		<PARAM name="InitBackgroundURL" value="http://zaki.asia/3di_openviewer_init.jpg" />
+		<PARAM name="InitBackgroundMusicURL" value="http://zaki.asia/3di_openviewer_bgm.ogg" />
+		-->
+
+		<!-- Login settings -->
+		<!--
+		<PARAM name="LoginBackgroundURL" value="http://zaki.asia/3di_openviewer_login.jpg" />
+		-->
+		<PARAM name="LoginMode" value="manual" />
+		<PARAM name="WindowWidth" value="800" />
+		<PARAM name="WindowHeight" value="600" />
+		<PARAM name="ServerURI" value="10.0.1.166:10001" />
+		<PARAM name="FirstName" value="test3" />
+		<PARAM name="LastName" value="test" />
+		<PARAM name="Password" value="testtest" />
+
+		<!--
+		<PARAM name="LoginLocation" value="uri:10.0.1.85&128&128&128" />
+		<PARAM name="DHTMLRelationEnable" value="true" />
+		<PARAM name="Locale" value="jp" />
+		-->
+		
+		<!--
+		<PARAM name="ShaderLevel" value="low" />
+		<PARAM name="DrawSea" value="false" />
+		<PARAM name="DrawTerrain" value="false" />
+		<PARAM name="DrawSky" value="false" />
+		<PARAM name="DrawMenu" value="false" />
+		<PARAM name="TickOn" value="false" />
+		<PARAM name="WorldTime" value="12:00:00" />
+		<PARAM name="WorldAmbientColor" value="0.0,0.0,0.0" />
+		-->
+
+		<!--
+		<PARAM name="IsFixDirectional" value="true" />
+		<PARAM name="FixDirectionalDirection" value="1.75,0,0" />
+		<PARAM name="FixDirectionalDiffuseColor" value="1.0,0.4,0.4" />
+		<PARAM name="FixDirectionalAmbientColor" value="0.2,0.08,0.08" />
+		-->
+		
+		<!--
+		<PARAM name="CameraStartDistance" value="2.0" />
+		<PARAM name="CameraKeyWalkingDistance" value="3.0" />
+		<PARAM name="CameraMinDistance" value="0.1" />
+		<PARAM name="CameraMaxDistance" value="5.0" />
+		<PARAM name="CameraFOV" value="0.785" />
+		<PARAM name="CameraOffsetY" value="10" />
+		<PARAM name="CameraMinAngleY" value="0.001" />
+		<PARAM name="CameraMaxAngleY" value="1.57" />
+		<PARAM name="CameraDefaultAngleY" value="0.785" />
+		<PARAM name="CameraDefaultAngleX" value="3.14" />
+		-->
+		
+		<!--
+		<PARAM name="RequireVersion" value="1.0.0.0" />	
+		-->
+	</object>
+	</div>
+
+	<div id="js_cotain_fix">
+
+		<div class="type00">
+			<h3>!--1. Login / Logout sample.--</h3>
+			<input type="text" id="server" name="server" value="10.0.1.166:10001"/>
+			<input type="text" id="loginLocation" name="loginLocation" value="uri:Region0&250&250&30"/>
+			<br>
+			<input type="text" id="first" name="first" value="test4"/>
+			<input type="text" id="last" name="last" value="test"/>
+			<input type="password" id="password" name="password" value="testtest"/>
+			<br>
+			<input type="button" value="Login" onclick="Login();" />
+			<input type="button" value="Logout" onclick="Logout();" />
+		</div>
+
+
+		<div class="type01">
+			<h3>!--2. Touch sample.--</h3>
+			<input type="text" id="touch_res" name="touch_res" style="width:256"/>
+			<input type="button" value="Touch" onclick="TouchTo();"/>
+		</div>
+
+
+		<div class="type00">
+			<h3>!--3. Sit sample.--</h3>
+			<input type="button" value="Sit" onclick="SitOn();"/>
+			<input type="button" value="StandUp" onclick="StandUp();"/>
+		</div>
+
+
+		<div class="type01">
+			<h3>!--4. Chat sample.--</h3>
+			<select size="8" id="chat_history" name="chat_history" style="width:256"></select>
+			<br>
+			<input type="text" id="chat_message" name="chat_message" style="width:256"/>
+			<input type="button" value="Send" onclick="SendChat();"/>
+		</div>
+
+		<div class="type00">
+			<h3>!--5. Teleport sample.--</h3>
+			
+			<div class="box">
+			R:<br>
+			<input type="text" id="tel_region" name="tel_region" value=""/>
+			</div>
+			
+			<div class="box">
+			X:<br>
+			<input type="text" id="tel_x" name="tel_x" value="128"/>
+			</div>
+
+			<div class="box">
+			Y:<br>
+			<input type="text" id="tel_y" name="tel_y" value="128"/>
+			</div>
+
+			<div class="box">
+			Z:<br>
+			<input type="text" id="tel_z" name="tel_z" value="128"/>
+			</div>
+
+			<br>
+			<input type="button" value="Teleport" onclick="Teleport();" class="float_clear"/>
+		</div>
+
+
+		<div class="type01">
+			<h3>!--6. .--</h3>
+		</div>
+
+
+		<div class="type00">
+			<h3>!--7. User avatar control sample.--</h3>
+			<input type="button" value="GetName" onclick="GetUserAvatarName();" />
+			<input type="button" value="GetPosition" onclick="GetUserAvatarPosition();" />
+			<br>
+			<br>
+			
+			<input type="button" value=""/>
+			<input type="button" value="U" onclick="UserAvatarUp();" />
+			<input type="button" value=""/>
+			<br>
+			<input type="button" value="L" onclick="UserAvatarLeft();" />
+			<input type="button" value=""/>
+			<input type="button" value="R" onclick="UserAvatarRight();" />	
+			<br>
+			<input type="button" value=""/>
+			<input type="button" value="D" onclick="UserAvatarDown();" />
+			<input type="button" value=""/>
+			<br>
+		</div>
+
+
+		<div class="type01">
+			<h3>!--8. Common sample.--</h3>
+			State:<br>
+			<input type="text" id="state_message" name="state_message"/>
+			<br>
+			<input type="button" value="fps" onclick="GetFPS();" />
+			<input type="button" value="primitive" onclick="GetPrimitiveCount();" />
+			<input type="button" value="texture" onclick="GetTextureCount();" />
+		</div>
+
+
+		<div class="type00">
+			<h3>!--9. Camera sample.--</h3>
+			<input type="button" value="CameraSet" onclick="CameraLookAt();"/>
+			<input type="button" value="CameraPosition" onclick="GetCameraPosition();"/>
+			<input type="button" value="CameraTarget" onclick="GetCameraTarget();"/>
+			<br>
+			<input type="button" value="GetDistance" onclick="GetCameraDistance();"/>
+			<input type="button" value="GetFOV" onclick="GetCameraFOV();"/>
+			<input type="button" value="GetOffsetY" onclick="GetCameraOffsetY();"/>
+			<br>
+			<input type="button" value="GetAngleY" onclick="GetCameraAngleY();"/>
+			<br>
+			<input type="text" id="camera_distance" name="camera_distance" value="5"/>
+			<input type="button" value="SetDistance" onclick="SetCameraDistance();"/>
+			<br>
+			<input type="text" id="camera_fov" name="camera_fov" value="1.0"/>
+			<input type="button" value="SetFOV" onclick="SetCameraFOV();"/>
+			<input type="button" value="SetFOVDegree" onclick="SetCameraFOVDegree();"/>
+			<input type="text" id="camera_offset_y" name="camera_offset_y" value="1"/>
+			<input type="button" value="SetOffsetY" onclick="SetCameraOffsetY();"/>
+			<br>
+			<input type="text" id="camera_angle_min_y" name="camera_angle_min_y" value="0.785"/>
+			<input type="text" id="camera_angle_max_y" name="camera_angle_max_y" value="1.57"/>
+			<input type="button" value="SetAngleY" onclick="SetCameraAngleY();"/>
+		</div>
+		
+		<div class="type01">
+			<h3>!--10. World sample.--</h3>
+			<input type="button" value="GetAvatarCount" onclick="GetAvatarCount();"/>
+			<input type="button" value="GetObjectCount" onclick="GetObjectCount();"/>
+			<br>
+			<input type="button" value="GetRegionName" onclick="GetRegionName();"/>
+			<input type="button" value="GetWorldTime" onclick="GetWorldTime();"/>
+			<br>
+			<input type="text" id="world_time" name="world_time" value="10:00:00"/>
+			<input type="button" value="SetWorldTime" onclick="SetWorldTime();"/>
+			<br>
+			<input type="button" value="TickOn" onclick="SetTick('true');"/>
+			<input type="button" value="TickOff" onclick="SetTick('false');"/>
+			<br>
+			<input type="text" id="world_ambient_color" name="world_ambient_color" value="0.5,0.5,0.5"/>
+			<input type="button" value="SetAmbient" onclick="SetWorldAmbientColor();"/>
+		</div>
+
+		<div class="type00">
+			<h3>!--11. Fix directional sample.--</h3>
+			<input type="button" value="FixDOn" onclick="SetFixDirectional('true');"/>
+			<input type="button" value="FixDOff" onclick="SetFixDirectional('false');"/>
+			<br>
+			<input type="text" id="fix_directional_rotation" name="fix_directional_rotation" value="1.75,0,0"/>
+			<input type="button" value="SetFixDR" onclick="SetFixDirectionalRotation();"/>
+			<br>
+			<input type="text" id="fix_directional_diffuse" name="fix_directional_diffuse" value="1.0,0.4,0.4"/>
+			<input type="button" value="SetFixDD" onclick="SetFixDirectionalDiffuseColor();"/>
+			<br>
+			<input type="text" id="fix_directional_ambient" name="fix_directional_ambient" value="0.2,0.08,0.08"/>
+			<input type="button" value="SetFixDA" onclick="SetFixDirectionalAmbientColor();"/>
+		</div>
+
+	</div>
+<script language="javascript">
+<!--
+var listener = {
+  OnDebugMessage : function(message) {
+    var debug_info = document.getElementById("js_debug_text_fix");
+    debug_info.value = message;
+  },
+  OnTouched : function(uuid) {
+    TouchEventHandler(uuid);
+  },
+  OnReceivedMessage : function() {
+    GetChatMessage();
+  },
+  OnTeleport : function(regionName, x, y, z) {
+    var touch_res = document.getElementById("touch_res");
+    touch_res.value = regionName + " X:" + x.toString() + " Y:" + y.toString() + " Z:" + z.toString();
+  },
+  OnTeleported : function(avatarUUID, avatarName, x, y, z) {
+    var touch_res = document.getElementById("touch_res");
+    touch_res.value = avatarName + " X:" + x.toString() + " Y:" + y.toString() + " Z:" + z.toString();
+  },
+  OnOpenWindow : function(getTarget, getUri) {
+    window.open(getUri, getTarget);
+  },
+  OnStateChanged :  function(state) {
+    var state_message = document.getElementById("state_message");
+    state_message.value = state;
+  },
+};
+ctrl.SetEventListener(listener);
+-->
+</script>
+</body>
+</html>

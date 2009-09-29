@@ -1,0 +1,12 @@
+The following individuals and organizations have contributed to the files in
+the folder npOpenViewer:
+- Netscape Communications Corporation
+- 3Di, Inc. (http://3di.jp)
+
+The following individuals and organizations have contributed to the files in
+the folder 3DiOpenViewer/Bootstrap:
+- 3Di, Inc. (http://3di.jp)
+
+The following individuals and organizations have contributed to the files in
+the folder 3DiOpenViewer/KeepAlive:
+- 3Di, Inc. (http://3di.jp)
